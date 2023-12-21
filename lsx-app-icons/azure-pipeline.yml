@@ -1,0 +1,75 @@
+trigger: none
+
+resources:
+  repositories:
+    - repository: templates
+      name: "Retail Platform X/ado-templates"
+      type: git
+      ref: refs/heads/master
+
+stages:
+  - stage: 'BuildStage'
+    jobs:
+    - job: Phase_1
+      displayName: Phase 1
+      cancelTimeoutInMinutes: 1
+      pool:
+        name: TSX
+      steps:
+      - checkout: self
+        clean: true
+
+      - task: NodeTool@0
+        displayName: 'Use Node 18.14.2'
+        inputs:
+          versionSpec: 18.14.2
+
+      - template: step/displayHostnameAndLocation.yml@templates  # Template reference
+
+      - task: PowerShell@2
+        displayName: 'verify the specified package version does not already exist'
+        inputs:
+          targetType: 'inline'
+          script: |
+              # get version from package.json
+              $packageJsonPath = "$(Build.SourcesDirectory)\package.json"
+              $config = Get-Content -Path $packageJsonPath -Raw | ConvertFrom-Json
+              $packageVersion = $config.version
+              write-host "Package Version = $packageVersion"
+
+              # Check if that package version already exists. Exit if it does.
+              $existCheck = npm view @fssd/rpx-app-icons@$packageVersion version
+              if ($existCheck) {
+                write-host "Package version $packageVersion already exists. Exit pipeline."
+                exit 1
+              }
+
+      - task: Npm@1
+        displayName: 'npm ci'
+        inputs:
+          command: custom
+          workingDir: '$(Build.SourcesDirectory)'
+          verbose: false
+          customCommand: ci
+          customRegistry: useFeed
+          customFeed: 'd53ee6ed-9ce6-4df1-877b-925fbdaadd02'
+          
+      - task: Npm@1
+        displayName: 'npm publish'
+        condition: and(succeeded(), ne(variables.tagBeta, true))
+        inputs:
+          command: 'publish'
+          workingDir: '$(Build.SourcesDirectory)'
+          publishRegistry: 'useFeed'
+          publishFeed: 'd53ee6ed-9ce6-4df1-877b-925fbdaadd02'
+
+      - task: Npm@1
+        displayName: 'npm publish --tag beta'
+        condition: and(succeeded(), eq(variables.tagBeta, true))
+        inputs:
+          command: custom
+          workingDir: '$(Build.SourcesDirectory)'
+          verbose: false
+          customCommand: 'publish --tag beta'
+          publishEndpoint: '@fssd'
+      

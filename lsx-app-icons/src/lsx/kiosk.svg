@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="360"
+   height="360"
+   viewBox="0 0 360 360"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="kiosk.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.4972222"
+     inkscape:cx="179.79978"
+     inkscape:cy="180"
+     inkscape:window-width="1920"
+     inkscape:window-height="1137"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     id="Rectangle_2601"
+     d="M 21.998047 10 A 12 12 0 0 0 9.9980469 22 L 9.9980469 238 A 12 12 0 0 0 21.998047 250 L 337.99805 250 A 12 12 0 0 0 349.99805 238 L 349.99805 22 A 12 12 0 0 0 337.99805 10 L 21.998047 10 z M 49.998047 50 L 309.99805 50 L 309.99805 210 L 49.998047 210 L 49.998047 50 z M 48.998047 270.00586 L 48.998047 338.00586 A 12 12 0 0 0 60.998047 350.00586 L 298.99805 350.00586 A 12 12 0 0 0 310.99805 338.00586 L 310.99805 270.00586 L 48.998047 270.00586 z " />
+</svg>

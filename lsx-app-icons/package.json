@@ -1,0 +1,31 @@
+{
+  "name": "@fssd/rpx-app-icons",
+  "description": "Icon collection for use within LSX apps.",
+  "version": "0.0.4",
+  "type": "module",
+  "exports": {
+    "." : {
+      "import": "./dist/style.css"
+    },
+    "./names": {
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "prepack": "npm run build",
+    "clean": "node ./src/clean.js",
+    "fonts": "node ./src/createFont.js"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.4.0",
+    "fantasticon": "^2.0.0",
+    "vite": "^4.5.0",
+    "vue": "^3.3.6"
+  },
+  "overrides": {
+    "fantasticon": {
+      "glob": "^7.0.0"
+    }
+  }
+}
